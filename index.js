@@ -26,9 +26,32 @@ app.get('/alumno', (req, res) => {
     );
 
 })
+app.get('/usuarios', (req, res) => {
+    const db = new Database()
+    const cn = db.getConnection()
+    cn.execute(
+        'SELECT * FROM usuarios', [],
+        function (err, results, fields) {
+            res.json(results)
+        }
+    );
+
+})
 
 
 app.get('/alumno/:id', (req, res) => {
+    const { id } = req.params;
+    const db = new Database()
+    const cn = db.getConnection()
+    cn.execute(
+        'SELECT * FROM alumno WHERE id = ?', [id],
+        function (err, results, fields) {
+            res.json(results[0])
+        }
+    );
+
+})
+app.get('/usuarios/:id', (req, res) => {
     const { id } = req.params;
     const db = new Database()
     const cn = db.getConnection()

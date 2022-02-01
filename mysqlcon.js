@@ -11,6 +11,17 @@ class Database {
   }
 
 }
+class Database {
+  getConnection() {
+    const connection = mysql.createConnection({
+      host: 'localhost',
+      user: 'termo',
+      database: 'prueba'
+    });
+    return connection;
+  }
+
+}
 module.exports = Database;
 
 
